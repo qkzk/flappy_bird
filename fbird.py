@@ -27,8 +27,8 @@ def draw_walls():
     for wall in walls:
         x = wall[0]
         y = wall[1]
-        t = Rect((x, 0), (3 * GAP, y))
-        b = Rect((x, y + 7 * GAP), (3 * GAP, HEIGHT - y + 7 * GAP))
+        t = Rect((x, 0), (GAP_WIDTH, y))
+        b = Rect((x, y + GAP_HEIGHT), (GAP_WIDTH, HEIGHT - y + GAP_HEIGHT))
         screen.draw.filled_rect(t, 'GREEN')
         screen.draw.filled_rect(b, 'GREEN')
 
@@ -66,9 +66,9 @@ def check_collision():
         x = wall[0]
         y = wall[1]
         passed = wall[2]
-        t = Rect((x, 0), (3 * GAP, y))
-        b = Rect((x, y + 7 * GAP), (3 * GAP, HEIGHT - y + 7 * GAP))
-        if bird > x + 3 * GAP and not passed:
+        t = Rect((x, 0), (GAP_WIDTH, y))
+        b = Rect((x, y + GAP_HEIGHT), (GAP_WIDTH, HEIGHT - y + GAP_HEIGHT))
+        if bird > x + GAP_WIDTH and not passed:
             wall[2] = True
             score += 1
             print(score)
@@ -89,7 +89,7 @@ def calc_speed():
 
 def check_keys():
     global speed
-    if keyboard.space:
+    if keyboard.space or keyboard.up:
         speed = -5
 
 
@@ -114,6 +114,8 @@ score = init_score()
 WIDTH = 400
 HEIGHT = 600
 GAP = 30
+GAP_WIDTH = 3 * GAP
+GAP_HEIGHT = 7 * GAP
 GRAVITY = 1
 MAX_SPEED = 20
 pgzrun.go()
