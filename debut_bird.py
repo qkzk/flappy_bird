@@ -20,7 +20,7 @@ def init_score():
 
 def draw_bird():
     f = Rect((100, bird), (GAP, GAP))
-    screen.draw.filled_rect(f, 'YELLOW')
+    screen.draw.filled_rect(f, "YELLOW")
 
 
 def draw_walls():
@@ -28,14 +28,14 @@ def draw_walls():
         x = wall[0]
         y = wall[1]
         t = Rect((x, 0), (GAP_WIDTH, y))
-        screen.draw.filled_rect(t, 'GREEN')
+        screen.draw.filled_rect(t, "GREEN")
 
 
 def draw():
-    screen.fill('BLUE')
+    screen.fill("BLUE")
     draw_bird()
     draw_walls()
-    screen.draw.text(str(score), (20, 100), color='RED', fontsize=60)
+    screen.draw.text(str(score), (20, 100), color="RED", fontsize=60)
 
 
 def update():
@@ -43,18 +43,22 @@ def update():
     calc_speed()
     check_keys()
     move_walls()
-    dead = check_collision()
-    if is_out() or dead:
+    dead = check_collision(bird, walls) or is_out(bird)
+    if dead:
         bird = init_bird()
         speed = init_speed()
         score = init_score()
 
 
-def is_out():
+def is_out(bird):
     pass
 
 
-def check_collision():
+def check_collision(bird, walls):
+    pass
+
+
+def bird_hit_wall(bird, wall):
     pass
 
 
@@ -84,4 +88,5 @@ GAP_WIDTH = 3 * GAP
 GAP_HEIGHT = 7 * GAP
 GRAVITY = 1
 MAX_SPEED = 20
+
 pgzrun.go()
